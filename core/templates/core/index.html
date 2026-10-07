@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Web Site - Hobby</title>
+    <style>
+        /* Variáveis de cores para trocar facilmente */
+        :root {
+            --bg-body: #f8f9fa;
+            --bg-card: white;
+            --bg-header: #2c3e50;
+            --text-main: #333;
+            --text-title: #2c3e50;
+            --text-date: #95a5a6;
+            --shadow: rgba(0,0,0,0.05);
+        }
+
+        /* Cores do Modo Escuro */
+        [data-theme="dark"] {
+            --bg-body: #121212;
+            --bg-card: #1e1e1e;
+            --bg-header: #1a252f;
+            --text-main: #e0e0e0;
+            --text-title: #3498db;
+            --text-date: #7f8c8d;
+            --shadow: rgba(0,0,0,0.5);
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-body);
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        header {
+            background-color: var(--bg-header);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            transition: background-color 0.3s;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .post {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px var(--shadow);
+            margin-bottom: 25px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .post h2 {
+            margin-top: 0;
+            color: var(--text-title);
+        }
+        .data {
+            color: var(--text-date);
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        .post-conteudo {
+            line-height: 1.6;
+        }
+
+        /* Botão do Modo Escuro */
+        .btn-theme {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .btn-theme:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- Botão que vai alternar o tema -->
+        <button class="btn-theme" id="themeToggle">🌓 Modo Escuro</button>
+        <h1>Meu Diário de Atualizações</h1>
+        <p>Bem-vindo ao meu site criado do zero com Python e Django!</p>
+    </header>
+
+    <div class="container">
+        {% for post in posts %}
+            <div class="post">
+                <h2>{{ post.titulo }}</h2>
+                <div class="data">Publicado em: {{ post.data_criacao|date:"d/m/Y H:i" }}</div>
+                {% if post.imagem %}
+    <div style="margin-bottom: 15px;">
+        <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" style="max-width: 100%; height: auto; border-radius: 6px;">
+    </div>
+{% endif %}
+
+                <div class="post-conteudo">
+                    {{ post.conteudo|linebreaks }}
+                </div>
+            </div>
+        {% empty %}
+            <p>Ainda não há nenhuma publicação por aqui. Acesse o painel e crie a primeira!</p>
+        {% endfor %}
+    </div>
+
+    <!-- Script em JavaScript para fazer a troca de temas -->
+    <script>
+        const toggleButton = document.getElementById('themeToggle');
+        const currentTheme = localStorage.getItem('theme');
+
+        // Verifica se o usuário já tinha escolhido o modo escuro antes
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            toggleButton.textContent = '☀️ Modo Claro';
+        }
+
+        // Função que roda ao clicar no botão
+        toggleButton.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            
+            if (theme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                toggleButton.textContent = '🌓 Modo Escuro';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                toggleButton.textContent = '☀️ Modo Claro';
+            }
+        });
+    </script>
+
+</body>
+</html>
+
