@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Web Site - Hobby</title>
+    <title>Meu Espaço Digital - Hobby</title>
     <style>
-        /* Variáveis de cores para trocar facilmente */
+        /* Variáveis de cores */
         :root {
-            --bg-body: #f8f9fa;
+            --bg-body: #f4f6f9;
             --bg-card: white;
-            --bg-header: #2c3e50;
+            --bg-navbar: #2c3e50;
+            --accent-color: #3498db;
             --text-main: #333;
-            --text-title: #2c3e50;
-            --text-date: #95a5a6;
+            --text-muted: #7f8c8d;
             --shadow: rgba(0,0,0,0.05);
         }
 
-        /* Cores do Modo Escuro */
         [data-theme="dark"] {
             --bg-body: #121212;
             --bg-card: #1e1e1e;
-            --bg-header: #1a252f;
+            --bg-navbar: #1a252f;
+            --accent-color: #2980b9;
             --text-main: #e0e0e0;
-            --text-title: #3498db;
-            --text-date: #7f8c8d;
-            --shadow: rgba(0,0,0,0.5);
+            --text-muted: #95a5a6;
+            --shadow: rgba(0,0,0,0.4);
         }
 
         body {
@@ -35,115 +34,162 @@
             color: var(--text-main);
             transition: background-color 0.3s, color 0.3s;
         }
-        header {
-            background-color: var(--bg-header);
+
+        /* Barra de Navegação Profissional */
+        .navbar {
+            background-color: var(--bg-navbar);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar-logo {
             color: white;
-            padding: 40px 20px;
+            font-size: 1.4em;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .navbar-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .navbar-links a:hover {
+            color: white;
+        }
+
+        /* Seção de Boas-vindas (Hero) */
+        .hero {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
             text-align: center;
-            position: relative;
-            transition: background-color 0.3s;
+            padding: 60px 20px;
+            margin-bottom: 30px;
         }
+        .hero h1 { margin: 0 0 10px 0; font-size: 2.5em; }
+        .hero p { margin: 0; font-size: 1.2em; opacity: 0.9; }
+
+        /* Conteúdo Principal */
         .container {
-            max-width: 800px;
-            margin: 30px auto;
+            max-width: 900px;
+            margin: 0 auto;
             padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
         }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+        }
+
+        .feed { /* Coluna dos posts */ }
+
+        .sidebar { /* Coluna lateral para mini-perfil futuro */ }
+
         .post {
             background: var(--bg-card);
             padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px var(--shadow);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px var(--shadow);
             margin-bottom: 25px;
-            transition: background-color 0.3s, box-shadow 0.3s;
+            transition: transform 0.2s, background-color 0.3s;
         }
-        .post h2 {
-            margin-top: 0;
-            color: var(--text-title);
-        }
-        .data {
-            color: var(--text-date);
-            font-size: 0.9em;
-            margin-bottom: 15px;
-        }
-        .post-conteudo {
-            line-height: 1.6;
-        }
+        .post:hover { transform: translateY(-2px); }
+        .post h2 { margin-top: 0; color: var(--accent-color); }
+        .data { color: var(--text-muted); font-size: 0.85em; margin-bottom: 15px; }
+        .post-conteudo { line-height: 1.6; }
 
-        /* Botão do Modo Escuro */
         .btn-theme {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #3498db;
+            background-color: transparent;
             color: white;
-            border: none;
-            padding: 10px 15px;
+            border: 1px solid #ffffff55;
+            padding: 8px 12px;
             border-radius: 20px;
             cursor: pointer;
             font-weight: bold;
-            transition: 0.2s;
         }
-        .btn-theme:hover {
-            background-color: #2980b9;
-        }
+        .btn-theme:hover { background-color: #ffffff22; }
     </style>
 </head>
 <body>
 
-    <header>
-        <!-- Botão que vai alternar o tema -->
-        <button class="btn-theme" id="themeToggle">🌓 Modo Escuro</button>
-        <h1>Meu Diário de Atualizações</h1>
-        <p>Bem-vindo ao meu site criado do zero com Python e Django!</p>
+    <!-- Menu de Navegação Global -->
+    <nav class="navbar">
+        <a href="#" class="navbar-logo">🚀 Meu Espaço</a>
+        <div class="navbar-links">
+            <a href="#" style="color: white;">Home</a>
+            <a href="#">Perfil</a>
+            <a href="#">Amigos</a>
+            <a href="#">Configurações</a>
+            <button class="btn-theme" id="themeToggle" style="margin-left: 15px;">🌓 Tema</button>
+        </div>
+    </nav>
+
+    <!-- Seção de Destaque da Home Page -->
+    <header class="hero">
+        <h1>Bem-vindo ao Meu Universo Digital</h1>
+        <p>Acompanhe minhas atualizações, projetos e aprendizados diariamente.</p>
     </header>
 
+    <!-- Grid de Conteúdo -->
     <div class="container">
-        {% for post in posts %}
-            <div class="post">
-                <h2>{{ post.titulo }}</h2>
-                <div class="data">Publicado em: {{ post.data_criacao|date:"d/m/Y H:i" }}</div>
-                {% if post.imagem %}
-    <div style="margin-bottom: 15px;">
-        <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" style="max-width: 100%; height: auto; border-radius: 6px;">
-    </div>
-{% endif %}
-
-                <div class="post-conteudo">
-                    {{ post.conteudo|linebreaks }}
+        
+        <!-- Feed de Atualizações -->
+        <main class="feed">
+            {% for post in posts %}
+                <div class="post">
+                    <h2>{{ post.titulo }}</h2>
+                    <div class="data">Publicado em: {{ post.data_criacao|date:"d/m/Y H:i" }}</div>
+                    {% if post.imagem %}
+                        <div style="margin-bottom: 15px;">
+                            <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" style="max-width: 100%; height: auto; border-radius: 8px;">
+                        </div>
+                    {% endif %}
+                    <div class="post-conteudo">
+                        {{ post.conteudo|linebreaks }}
+                    </div>
                 </div>
+            {% empty %}
+                <div class="post">
+                    <p>Nenhuma novidade por enquanto. Volte mais tarde!</p>
+                </div>
+            {% endfor %}
+        </main>
+
+        <!-- Barra Lateral (Futuro mini-perfil rápido) -->
+        <aside class="sidebar">
+            <div class="post" style="text-align: center;">
+                <h3>Status do Hobby</h3>
+                <p style="color: var(--text-muted); font-size: 0.9em;">Site 100% programado em Python & Django, hospedado na Render.</p>
             </div>
-        {% empty %}
-            <p>Ainda não há nenhuma publicação por aqui. Acesse o painel e crie a primeira!</p>
-        {% endfor %}
+        </aside>
+
     </div>
 
-    <!-- Script em JavaScript para fazer a troca de temas -->
+    <!-- Script do Modo Escuro -->
     <script>
         const toggleButton = document.getElementById('themeToggle');
         const currentTheme = localStorage.getItem('theme');
 
-        // Verifica se o usuário já tinha escolhido o modo escuro antes
         if (currentTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
-            toggleButton.textContent = '☀️ Modo Claro';
         }
 
-        // Função que roda ao clicar no botão
         toggleButton.addEventListener('click', () => {
             let theme = document.documentElement.getAttribute('data-theme');
-            
             if (theme === 'dark') {
                 document.documentElement.removeAttribute('data-theme');
                 localStorage.setItem('theme', 'light');
-                toggleButton.textContent = '🌓 Modo Escuro';
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
-                toggleButton.textContent = '☀️ Modo Claro';
             }
         });
     </script>
 
 </body>
 </html>
-
