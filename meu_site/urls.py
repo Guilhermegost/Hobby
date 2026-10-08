@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.pagina_inicial, name='home'),
+    path('configuracoes/', views.pagina_configuracoes, name='configuracoes'),
 ]
 
 # Adiciona suporte para carregar as imagens do upload no modo de desenvolvimento

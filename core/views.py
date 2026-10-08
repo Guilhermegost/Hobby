@@ -7,3 +7,6 @@ def pagina_inicial(request):
     # Envia os posts para o arquivo HTML que vamos criar
     return render(request, 'core/index.html', {'posts': posts})
 
+def pagina_configuracoes(request):
+    return render(request, 'core/configuracoes.html')
+

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - Meu Espaço</title>
+    <style>
+        :root {
+            --bg-body: #f4f6f9;
+            --bg-card: white;
+            --bg-navbar: #2c3e50;
+            --accent-color: #3498db;
+            --text-main: #333;
+            --text-muted: #7f8c8d;
+            --shadow: rgba(0,0,0,0.05);
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #121212;
+            --bg-card: #1e1e1e;
+            --bg-navbar: #1a252f;
+            --accent-color: #2980b9;
+            --text-main: #e0e0e0;
+            --text-muted: #95a5a6;
+            --shadow: rgba(0,0,0,0.4);
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-body);
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .navbar {
+            background-color: var(--bg-navbar);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-logo { color: white; font-size: 1.4em; font-weight: bold; text-decoration: none; }
+        .navbar-links a { color: #bdc3c7; text-decoration: none; margin-left: 20px; font-weight: 500; }
+        .navbar-links a:hover { color: white; }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .config-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px var(--shadow);
+        }
+
+        h1 { color: var(--accent-color); margin-top: 0; font-size: 1.8em; }
+
+        .config-group {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #ffffff11;
+            padding-bottom: 15px;
+        }
+
+        .config-label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .config-desc {
+            color: var(--text-muted);
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .btn-salvar {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .btn-salvar:hover { opacity: 0.9; }
+
+        .btn-theme {
+            background-color: transparent;
+            color: white;
+            border: 1px solid #ffffff55;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menu de Navegação -->
+    <nav class="navbar">
+        <a href="{% url 'home' %}" class="navbar-logo">🚀 Meu Espaço</a>
+        <div class="navbar-links">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="#">Perfil</a>
+            <a href="#">Amigos</a>
+            <a href="{% url 'configuracoes' %}" style="color: white;">Configurações</a>
+            <button class="btn-theme" id="themeToggle" style="margin-left: 15px;">🌓 Tema</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="config-card">
+            <h1>⚙️ Configurações da Conta</h1>
+            
+            <div class="config-group">
+                <span class="config-label">Privacidade do Perfil</span>
+                <p class="config-desc">Escolha quem pode ver suas atualizações diárias.</p>
+                <label><input type="radio" name="privacidade" checked> Público</label><br>
+                <label><input type="radio" name="privacidade"> Privado (Apenas amigos)</label>
+            </div>
+
+            <div class="config-group">
+                <span class="config-label">Notificações por E-mail</span>
+                <p class="config-desc">Receba alertas quando receber novos pedidos de amizade.</p>
+                <label><input type="checkbox" checked> Ativar notificações</label>
+            </div>
+
+            <button class="btn-salvar" onclick="alert('Configurações salvas com sucesso! (Simulação)')">Salvar Alterações</button>
+        </div>
+    </div>
+
+    <script>
+        // Mantém o modo escuro funcionando nesta página também
+        const toggleButton = document.getElementById('themeToggle');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); }
+
+        toggleButton.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>
