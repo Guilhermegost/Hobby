@@ -3,193 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Espaço Digital - Hobby</title>
+    <title>Mural | Meu Espaço</title>
     <style>
-        /* Variáveis de cores */
-        :root {
-            --bg-body: #f4f6f9;
-            --bg-card: white;
-            --bg-navbar: #2c3e50;
-            --accent-color: #3498db;
-            --text-main: #333;
-            --text-muted: #7f8c8d;
-            --shadow: rgba(0,0,0,0.05);
-        }
-
-        [data-theme="dark"] {
-            --bg-body: #121212;
-            --bg-card: #1e1e1e;
-            --bg-navbar: #1a252f;
-            --accent-color: #2980b9;
-            --text-main: #e0e0e0;
-            --text-muted: #95a5a6;
-            --shadow: rgba(0,0,0,0.4);
-        }
-
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: var(--bg-body);
-            margin: 0;
-            padding: 0;
-            color: var(--text-main);
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* Barra de Navegação Profissional */
-        .navbar {
-            background-color: var(--bg-navbar);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .navbar-logo {
-            color: white;
-            font-size: 1.4em;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        .navbar-links a {
-            color: #bdc3c7;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        .navbar-links a:hover {
-            color: white;
-        }
-
-        /* Seção de Boas-vindas (Hero) */
-        .hero {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-            margin-bottom: 30px;
-        }
-        .hero h1 { margin: 0 0 10px 0; font-size: 2.5em; }
-        .hero p { margin: 0; font-size: 1.2em; opacity: 0.9; }
-
-        /* Conteúdo Principal */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
-        }
-
-        .feed { /* Coluna dos posts */ }
-
-        .sidebar { /* Coluna lateral para mini-perfil futuro */ }
-
-        .post {
-            background: var(--bg-card);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px var(--shadow);
-            margin-bottom: 25px;
-            transition: transform 0.2s, background-color 0.3s;
-        }
-        .post:hover { transform: translateY(-2px); }
-        .post h2 { margin-top: 0; color: var(--accent-color); }
-        .data { color: var(--text-muted); font-size: 0.85em; margin-bottom: 15px; }
-        .post-conteudo { line-height: 1.6; }
-
-        .btn-theme {
-            background-color: transparent;
-            color: white;
-            border: 1px solid #ffffff55;
-            padding: 8px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .btn-theme:hover { background-color: #ffffff22; }
+        :root { --blue:#3b5998; --blue-dark:#29487d; --page:#e9ebee; --ink:#1d2129; --muted:#606770; --line:#dddfe2; --card:#fff; }
+        * { box-sizing:border-box; }
+        body { margin:0; color:var(--ink); background:var(--page); font:15px Arial,Helvetica,sans-serif; }
+        a { color:var(--blue); text-decoration:none; }
+        .topbar { background:var(--blue); color:#fff; box-shadow:0 1px 3px #0003; }
+        .topbar-inner { max-width:1120px; min-height:58px; padding:8px 18px; margin:auto; display:flex; align-items:center; gap:24px; }
+        .brand { color:#fff; font-weight:bold; font-size:22px; letter-spacing:-.5px; white-space:nowrap; }
+        .search { flex:1; max-width:360px; padding:9px 12px; border:0; border-radius:3px; background:#fff; color:#444; }
+        .toplinks { display:flex; align-items:center; gap:18px; margin-left:auto; }
+        .toplinks a { color:#fff; font-weight:bold; font-size:14px; }
+        .layout { max-width:1120px; margin:24px auto; padding:0 18px; display:grid; grid-template-columns:210px minmax(0,590px) 250px; gap:20px; align-items:start; }
+        .panel { background:var(--card); border:1px solid var(--line); border-radius:4px; margin-bottom:16px; }
+        .profile { padding:16px; display:flex; align-items:center; gap:12px; font-weight:bold; }
+        .avatar { width:42px; height:42px; border-radius:50%; display:grid; place-items:center; background:#d8e2f1; color:var(--blue); font-size:20px; flex:none; }
+        .menu { padding:8px 0; }
+        .menu a { display:block; padding:10px 14px; color:#333; }
+        .menu a:hover { background:#f2f3f5; }
+        .menu .icon { display:inline-block; width:28px; color:var(--blue); font-size:17px; }
+        .composer { padding:16px; }
+        .composer-title, .section-title { margin:0; padding:13px 16px; background:#f5f6f7; border-bottom:1px solid var(--line); font-size:15px; }
+        .composer form { padding-top:14px; }
+        textarea { display:block; width:100%; resize:vertical; border:1px solid var(--line); border-radius:3px; padding:12px; font:16px Arial,sans-serif; }
+        input[type=file] { max-width:100%; margin:12px 0; color:var(--muted); }
+        .composer-actions { border-top:1px solid #eee; padding-top:10px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+        .photo-label { color:var(--muted); font-size:13px; }
+        button { border:0; border-radius:3px; padding:9px 18px; background:var(--blue); color:#fff; font-weight:bold; cursor:pointer; }
+        button:hover { background:var(--blue-dark); }
+        .notice { padding:11px 14px; margin-bottom:14px; border-radius:3px; background:#e6f4ea; color:#216e39; }
+        .post { overflow:hidden; }
+        .post-head { display:flex; gap:11px; align-items:center; padding:14px 16px 4px; }
+        .post-head .avatar { width:40px; height:40px; }
+        .post-author { font-weight:bold; color:var(--blue); }
+        .post-date { display:block; margin-top:4px; color:var(--muted); font-size:12px; }
+        .post-body { padding:10px 16px 16px; line-height:1.55; overflow-wrap:anywhere; }
+        .post-body p { margin:0 0 10px; }
+        .post-image { display:block; width:100%; max-height:520px; object-fit:cover; }
+        .post-actions { border-top:1px solid #eee; padding:10px 16px; color:var(--muted); font-weight:bold; font-size:13px; }
+        .side-card { padding:15px; }
+        .side-card h2 { margin:0 0 9px; font-size:15px; }
+        .side-card p { margin:0; color:var(--muted); line-height:1.5; font-size:13px; }
+        .empty { padding:24px 18px; text-align:center; color:var(--muted); }
+        @media(max-width:850px) { .layout { grid-template-columns:190px minmax(0,1fr); } .right { display:none; } }
+        @media(max-width:600px) { .topbar-inner { flex-wrap:wrap; gap:10px 16px; } .search { order:3; max-width:none; flex-basis:100%; } .toplinks { gap:12px; } .layout { display:block; margin:14px auto; padding:0 10px; } .left { display:none; } }
     </style>
 </head>
 <body>
-
-    <!-- Menu de Navegação Global -->
-    <nav class="navbar">
-        <a href="#" class="navbar-logo">🚀 Meu Espaço</a>
-        <div class="navbar-links">
-            <a href="#" style="color: white;">Home</a>
-            <a href="#">Perfil</a>
-            <a href="#">Amigos</a>
-            <a href="{% url 'configuracoes' %}">Configurações</a>
-            <button class="btn-theme" id="themeToggle" style="margin-left: 15px;">🌓 Tema</button>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="{% url 'home' %}">Meu Espaço</a>
+            <input class="search" type="search" placeholder="Pesquisar no Meu Espaço" aria-label="Pesquisar">
+            <nav class="toplinks" aria-label="Navegação principal">
+                <a href="#perfil">{{ request.user.username }}</a>
+                <a href="#comunidades">Comunidades</a>
+                <a href="#mensagens">Mensagens</a>
+                <form method="post" action="{% url 'sair' %}" style="margin:0;">
+                    {% csrf_token %}<button type="submit" style="padding:8px 10px;">Sair</button>
+                </form>
+            </nav>
         </div>
-    </nav>
-
-    <!-- Seção de Destaque da Home Page -->
-    <header class="hero">
-        <h1>Bem-vindo ao Meu Universo Digital</h1>
-        <p>Acompanhe minhas atualizações, projetos e aprendizados diariamente.</p>
     </header>
 
-    <!-- Grid de Conteúdo -->
-    <div class="container">
-        
-        <!-- Feed de Atualizações -->
-        <main class="feed">
+    <div class="layout">
+        <aside class="left">
+            <div class="panel profile" id="perfil"><span class="avatar">🙂</span><span>{{ request.user.username }}</span></div>
+            <nav class="panel menu" aria-label="Menu">
+                <a href="{% url 'home' %}"><span class="icon">⌂</span>Meu mural</a>
+                <a href="#comunidades"><span class="icon">♧</span>Comunidades</a>
+                <a href="#mensagens"><span class="icon">✉</span>Mensagens</a>
+                <a href="{% url 'configuracoes' %}"><span class="icon">⚙</span>Configurações</a>
+            </nav>
+        </aside>
+
+        <main>
+            {% for message in messages %}<div class="notice">{{ message }}</div>{% endfor %}
+            <section class="panel composer">
+                <h1 class="composer-title">Compartilhe uma novidade</h1>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.conteudo }}
+                    {{ form.conteudo.errors }}
+                    {{ form.imagem }}
+                    {{ form.imagem.errors }}
+                    {% for error in form.non_field_errors %}<div class="notice">{{ error }}</div>{% endfor %}
+                    <div class="composer-actions"><span class="photo-label">Conte o que está acontecendo com você.</span><button type="submit">Publicar</button></div>
+                </form>
+            </section>
+
             {% for post in posts %}
-                <div class="post">
-                    <h2>{{ post.titulo }}</h2>
-                    <div class="data">Publicado em: {{ post.data_criacao|date:"d/m/Y H:i" }}</div>
-                    {% if post.imagem %}
-                        <div style="margin-bottom: 15px;">
-                            <img src="{{ post.imagem.url }}" alt="{{ post.titulo }}" style="max-width: 100%; height: auto; border-radius: 8px;">
-                        </div>
-                    {% endif %}
-                    <div class="post-conteudo">
-                        {{ post.conteudo|linebreaks }}
-                    </div>
-                </div>
+                <article class="panel post">
+                    <div class="post-head"><span class="avatar">🙂</span><div><span class="post-author">{% if post.autor %}{{ post.autor.username }}{% else %}Meu Espaço{% endif %}</span><time class="post-date" datetime="{{ post.data_criacao|date:'c' }}">{{ post.data_criacao|date:"d/m/Y \à\s H:i" }}</time></div></div>
+                    <div class="post-body">{% if post.titulo != 'Publicação' %}<strong>{{ post.titulo }}</strong>{% endif %}{{ post.conteudo|linebreaks }}{% if post.imagem %}<img class="post-image" src="{{ post.imagem.url }}" alt="Foto da publicação">{% endif %}</div>
+                    <div class="post-actions">♡ Curtir&nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;Comentar</div>
+                </article>
             {% empty %}
-                <div class="post">
-                    <p>Nenhuma novidade por enquanto. Volte mais tarde!</p>
-                </div>
+                <div class="panel empty">Seu mural está vazio. Que tal compartilhar a primeira novidade?</div>
             {% endfor %}
         </main>
 
-        <!-- Barra Lateral (Futuro mini-perfil rápido) -->
-        <aside class="sidebar">
-            <div class="post" style="text-align: center;">
-                <h3>Status do Hobby</h3>
-                <p style="color: var(--text-muted); font-size: 0.9em;">Site 100% programado em Python & Django, hospedado na Render.</p>
-            </div>
+        <aside class="right">
+            <section class="panel side-card" id="comunidades"><h2>Comunidades</h2><p>Um espaço para reunir pessoas com os mesmos interesses. Vamos montar essa parte na próxima etapa.</p></section>
+            <section class="panel side-card" id="mensagens"><h2>Mensagens</h2><p>Conversas privadas entre você e seus amigos. Essa será uma das próximas partes do projeto.</p></section>
         </aside>
-
     </div>
-
-    <!-- Script do Modo Escuro -->
-    <script>
-        const toggleButton = document.getElementById('themeToggle');
-        const currentTheme = localStorage.getItem('theme');
-
-        if (currentTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
-
-        toggleButton.addEventListener('click', () => {
-            let theme = document.documentElement.getAttribute('data-theme');
-            if (theme === 'dark') {
-                document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-    </script>
-
 </body>
 </html>

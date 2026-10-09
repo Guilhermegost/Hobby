@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Entrar | Meu Espaço</title>
+    <style>
+        *{box-sizing:border-box}body{margin:0;background:#e9ebee;color:#1d2129;font:15px Arial,sans-serif}.bar{height:64px;background:#3b5998;color:white;display:flex;align-items:center;padding:0 max(calc((100% - 980px)/2),24px);font-size:23px;font-weight:bold}.wrap{max-width:980px;margin:72px auto;padding:0 20px;display:grid;grid-template-columns:1.2fr 360px;gap:56px;align-items:center}.intro h1{color:#3b5998;font-size:34px;margin:0 0 12px}.intro p{font-size:19px;line-height:1.5;color:#4b4f56}.card{background:#fff;border:1px solid #dddfe2;border-radius:5px;padding:22px;box-shadow:0 2px 6px #0001}.card h2{margin:0 0 18px;font-size:20px}.card p{margin:0 0 14px}.card label{font-weight:bold}.card input{width:100%;padding:12px;margin-top:6px;border:1px solid #ccd0d5;border-radius:4px;font-size:16px}.helptext{display:block;color:#606770;font-size:12px;margin-top:5px}.errorlist{color:#b42318;padding-left:20px;margin:6px 0}.submit{width:100%;border:0;border-radius:4px;background:#3b5998;color:white;padding:12px;font-size:17px;font-weight:bold;cursor:pointer}.new{display:block;text-align:center;margin-top:18px;padding-top:16px;border-top:1px solid #dddfe2}.new a{color:#3b5998;font-weight:bold;text-decoration:none}@media(max-width:700px){.wrap{display:block;margin:35px auto}.intro{margin-bottom:28px}.intro h1{font-size:27px}}
+    </style>
+</head>
+<body>
+    <header class="bar">Meu Espaço</header>
+    <main class="wrap">
+        <section class="intro"><h1>Que bom ter você aqui.</h1><p>Entre para ver seu mural e conversar com sua comunidade.</p></section>
+        <section class="card">
+            <h2>Entrar na sua conta</h2>
+            {% if form.errors %}<ul class="errorlist"><li>Usuário ou senha incorretos. Tente novamente.</li></ul>{% endif %}
+            <form method="post">
+                {% csrf_token %}
+                <p><label for="id_username">Nome de usuário</label>{{ form.username }}</p>
+                <p><label for="id_password">Senha</label>{{ form.password }}</p>
+                {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+                <button class="submit" type="submit">Entrar</button>
+            </form>
+            <div class="new">Ainda não tem uma conta? <a href="{% url 'cadastro' %}">Criar conta</a></div>
+        </section>
+    </main>
+</body>
+</html>
